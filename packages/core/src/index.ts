@@ -1,2 +1,2 @@
 /** Public entry point for the deterministic simulation core. */
-export {};
+export * from './data/schemas.js';

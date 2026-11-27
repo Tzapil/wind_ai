@@ -1,0 +1,11 @@
+{
+  "id": "tartane",
+  "vmaxKn": 7,
+  "hold": 60,
+  "crewMin": 4,
+  "crewMax": 12,
+  "turnDegPerTick": 4,
+  "hull": 300,
+  "sailHp": 100,
+  "gunsPerSide": 2
+}

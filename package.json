@@ -5,7 +5,7 @@
   "packageManager": "pnpm@11.25.0",
   "scripts": {
     "dev": "pnpm --filter @poputnogo-vetra/client dev",
-    "build": "pnpm --filter @poputnogo-vetra/core build && pnpm --filter @poputnogo-vetra/client build",
+    "build": "pnpm data:build && pnpm --filter @poputnogo-vetra/core build && pnpm --filter @poputnogo-vetra/client build",
     "preview": "pnpm --filter @poputnogo-vetra/client preview",
     "test": "vitest run",
     "test:watch": "vitest",

@@ -1,1 +1,7 @@
-{}
+{
+  "ports.athens.name": "Афины (Пирей)",
+  "ports.istanbul.name": "Стамбул",
+  "ports.alexandria.name": "Александрия",
+  "ports.beirut.name": "Бейрут",
+  "ports.venice.name": "Венеция"
+}

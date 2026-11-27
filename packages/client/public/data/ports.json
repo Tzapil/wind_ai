@@ -1,0 +1,302 @@
+[
+  {
+    "id": "athens",
+    "lat": 37.94,
+    "lon": 23.62,
+    "nation": "neutral",
+    "provisionPrice": 3,
+    "crewHirePrice": 12,
+    "market": {
+      "grain": {
+        "role": "consumer",
+        "target": 80,
+        "sells": false
+      },
+      "wine": {
+        "role": "producer",
+        "target": 400,
+        "sells": true
+      },
+      "honey": {
+        "role": "producer",
+        "target": 300,
+        "sells": true
+      },
+      "cotton": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "cedar": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "soap": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "copper": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "glass": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "carpets": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "pepper": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      }
+    }
+  },
+  {
+    "id": "istanbul",
+    "lat": 41,
+    "lon": 28.98,
+    "nation": "ottoman",
+    "provisionPrice": 3,
+    "crewHirePrice": 15,
+    "market": {
+      "grain": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "wine": {
+        "role": "consumer",
+        "target": 80,
+        "sells": false
+      },
+      "honey": {
+        "role": "consumer",
+        "target": 60,
+        "sells": false
+      },
+      "cotton": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "cedar": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "soap": {
+        "role": "consumer",
+        "target": 70,
+        "sells": false
+      },
+      "copper": {
+        "role": "producer",
+        "target": 400,
+        "sells": true
+      },
+      "glass": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "carpets": {
+        "role": "producer",
+        "target": 300,
+        "sells": true
+      },
+      "pepper": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      }
+    }
+  },
+  {
+    "id": "alexandria",
+    "lat": 31.21,
+    "lon": 29.88,
+    "nation": "ottoman",
+    "provisionPrice": 2,
+    "crewHirePrice": 10,
+    "market": {
+      "grain": {
+        "role": "producer",
+        "target": 500,
+        "sells": true
+      },
+      "wine": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "honey": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "cotton": {
+        "role": "producer",
+        "target": 450,
+        "sells": true
+      },
+      "cedar": {
+        "role": "consumer",
+        "target": 80,
+        "sells": false
+      },
+      "soap": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "copper": {
+        "role": "consumer",
+        "target": 80,
+        "sells": false
+      },
+      "glass": {
+        "role": "consumer",
+        "target": 60,
+        "sells": false
+      },
+      "carpets": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "pepper": {
+        "role": "producer",
+        "target": 300,
+        "sells": true
+      }
+    }
+  },
+  {
+    "id": "beirut",
+    "lat": 33.9,
+    "lon": 35.51,
+    "nation": "ottoman",
+    "provisionPrice": 3,
+    "crewHirePrice": 12,
+    "market": {
+      "grain": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "wine": {
+        "role": "consumer",
+        "target": 70,
+        "sells": false
+      },
+      "honey": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "cotton": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "cedar": {
+        "role": "producer",
+        "target": 400,
+        "sells": true
+      },
+      "soap": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "copper": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "glass": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "carpets": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "pepper": {
+        "role": "neutral",
+        "target": 120,
+        "sells": true
+      }
+    }
+  },
+  {
+    "id": "venice",
+    "lat": 45.42,
+    "lon": 12.43,
+    "nation": "italian",
+    "provisionPrice": 4,
+    "crewHirePrice": 18,
+    "market": {
+      "grain": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "wine": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "honey": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "cotton": {
+        "role": "consumer",
+        "target": 70,
+        "sells": false
+      },
+      "cedar": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "soap": {
+        "role": "producer",
+        "target": 400,
+        "sells": true
+      },
+      "copper": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "glass": {
+        "role": "producer",
+        "target": 350,
+        "sells": true
+      },
+      "carpets": {
+        "role": "neutral",
+        "target": 120,
+        "sells": false
+      },
+      "pepper": {
+        "role": "consumer",
+        "target": 60,
+        "sells": false
+      }
+    }
+  }
+]
