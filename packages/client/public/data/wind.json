@@ -1,0 +1,65 @@
+{
+  "regions": [
+    {
+      "id": "aegean",
+      "lat": 38.5,
+      "lon": 25,
+      "prevailingFromDeg": 0,
+      "spreadDeg": 30
+    },
+    {
+      "id": "marmara",
+      "lat": 40.8,
+      "lon": 28,
+      "prevailingFromDeg": 30,
+      "spreadDeg": 30
+    },
+    {
+      "id": "adriatic",
+      "lat": 43,
+      "lon": 15.5,
+      "prevailingFromDeg": 320,
+      "spreadDeg": 60
+    },
+    {
+      "id": "ionian",
+      "lat": 37.5,
+      "lon": 18.5,
+      "prevailingFromDeg": 315,
+      "spreadDeg": 45
+    },
+    {
+      "id": "libyan",
+      "lat": 33,
+      "lon": 25,
+      "prevailingFromDeg": 315,
+      "spreadDeg": 40
+    },
+    {
+      "id": "levant",
+      "lat": 33.5,
+      "lon": 33.5,
+      "prevailingFromDeg": 270,
+      "spreadDeg": 45
+    },
+    {
+      "id": "west",
+      "lat": 39,
+      "lon": 5,
+      "prevailingFromDeg": 300,
+      "spreadDeg": 60
+    },
+    {
+      "id": "atlantic",
+      "lat": 38,
+      "lon": -11,
+      "prevailingFromDeg": 340,
+      "spreadDeg": 40
+    }
+  ],
+  "changeEveryDays": [
+    1,
+    3
+  ],
+  "transitionTicks": 50
+}

@@ -1,4 +1,13 @@
 {
+  "goods.grain.name": "Зерно",
   "goods.wine.name": "Вино",
+  "goods.honey.name": "Мёд",
+  "goods.cotton.name": "Хлопок",
+  "goods.cedar.name": "Кедр",
+  "goods.soap.name": "Мыло",
+  "goods.copper.name": "Медь",
+  "goods.glass.name": "Стекло",
+  "goods.carpets.name": "Ковры",
+  "goods.pepper.name": "Перец",
   "goods.wine.unit": "{count, plural, one {# бочка} few {# бочки} many {# бочек} other {# бочки}}"
 }

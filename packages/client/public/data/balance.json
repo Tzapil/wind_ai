@@ -1,0 +1,93 @@
+{
+  "startPortId": "athens",
+  "startSilver": 1000,
+  "startCrew": 8,
+  "startProvisions": 10,
+  "startMorale": 100,
+  "goalSilver": 5000,
+  "duty": 0.12,
+  "sellFactor": 0.92,
+  "batchSize": 5,
+  "roleMul": {
+    "producer": 0.6,
+    "neutral": 1,
+    "consumer": 1.5
+  },
+  "deficitClamp": [
+    0.5,
+    2
+  ],
+  "restockRate": 0.1,
+  "noise": {
+    "chance": 0.35,
+    "amplitude": 0.08,
+    "shockChance": 0.04,
+    "shockLow": [
+      0.4,
+      0.6
+    ],
+    "shockHigh": [
+      1.6,
+      2
+    ]
+  },
+  "initialStockSpread": [
+    0.8,
+    1.2
+  ],
+  "windCurve": [
+    [
+      0,
+      0.15
+    ],
+    [
+      30,
+      0.15
+    ],
+    [
+      45,
+      0.6
+    ],
+    [
+      60,
+      0.6
+    ],
+    [
+      90,
+      0.85
+    ],
+    [
+      120,
+      1
+    ],
+    [
+      150,
+      1
+    ],
+    [
+      180,
+      0.9
+    ]
+  ],
+  "crewCurveExponent": 2,
+  "crewBelowMinFactor": 0.2,
+  "overload": {
+    "freeUntil": 0.7,
+    "minFactor": 0.6
+  },
+  "starvingSpeedFactor": 0.5,
+  "inertia": 0.05,
+  "portEnterRadiusKm": 10,
+  "waypointRadiusKm": 2,
+  "tacking": {
+    "triggerDeg": 45,
+    "tackDeg": 50,
+    "maxOffsetKm": 10,
+    "coastLookaheadKm": 3
+  },
+  "provisionsPerTickUnit": 12000,
+  "starvingMoralePerDay": 10,
+  "desertionRatePerDay": 0.02,
+  "provisionSellFactor": 0.5,
+  "voyageProvisionReserve": 0.3
+}

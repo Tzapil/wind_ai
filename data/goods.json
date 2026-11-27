@@ -1,0 +1,62 @@
+[
+  {
+    "id": "grain",
+    "category": 1,
+    "basePrice": 10,
+    "weight": 1
+  },
+  {
+    "id": "wine",
+    "category": 1,
+    "basePrice": 20,
+    "weight": 1
+  },
+  {
+    "id": "honey",
+    "category": 1,
+    "basePrice": 25,
+    "weight": 1
+  },
+  {
+    "id": "cotton",
+    "category": 2,
+    "basePrice": 30,
+    "weight": 1
+  },
+  {
+    "id": "cedar",
+    "category": 2,
+    "basePrice": 34,
+    "weight": 1
+  },
+  {
+    "id": "soap",
+    "category": 2,
+    "basePrice": 38,
+    "weight": 1
+  },
+  {
+    "id": "copper",
+    "category": 2,
+    "basePrice": 40,
+    "weight": 1
+  },
+  {
+    "id": "glass",
+    "category": 3,
+    "basePrice": 85,
+    "weight": 1
+  },
+  {
+    "id": "carpets",
+    "category": 3,
+    "basePrice": 110,
+    "weight": 1
+  },
+  {
+    "id": "pepper",
+    "category": 4,
+    "basePrice": 180,
+    "weight": 1
+  }
+]
