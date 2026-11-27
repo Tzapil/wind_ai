@@ -13,5 +13,11 @@
 | Vitest | Модульные тесты | MIT |
 | happy-dom | DOM-окружение тестов интерфейса | MIT |
 | Playwright | Проверка страницы в браузере | Apache-2.0 |
+| i18next | Локализация интерфейса | MIT |
+| i18next-icu | ICU-формы сообщений | MIT |
+| eslint-plugin-i18next | Проверка текстовых литералов интерфейса | ISC |
+| PT Serif, PT Sans (`@fontsource`) | Локальные шрифты для русского текста | SIL OFL 1.1 |
+
+Лицензии шрифтов копируются в `packages/client/public/assets/PT-Serif-OFL.txt` и `PT-Sans-OFL.txt`; они попадают в сборку рядом с файлами шрифтов.
 
 Версии прямых и транзитивных зависимостей зафиксированы в `pnpm-lock.yaml`. Их полные тексты лицензий доступны в пакетах после `pnpm install`.
