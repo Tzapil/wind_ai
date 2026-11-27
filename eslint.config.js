@@ -1,5 +1,6 @@
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
+import i18next from 'eslint-plugin-i18next';
 
 export default [
   {
@@ -104,7 +105,8 @@ export default [
             {
               regex: '(?:^|/)core(?:/|$)',
               importNames: ['step', '*'],
-              message: 'Render modules must not import step or the core namespace.',
+              message:
+                'Render modules must not import step or the core namespace.',
             },
           ],
         },
@@ -113,7 +115,9 @@ export default [
   },
   {
     files: ['packages/client/src/ui/**/*.{ts,tsx}'],
+    plugins: { i18next },
     rules: {
+      'i18next/no-literal-string': ['error', { ignoreCallee: ['t'] }],
       'no-restricted-imports': [
         'error',
         {

@@ -1,0 +1,4 @@
+{
+  "goods.wine.name": "Вино",
+  "goods.wine.unit": "{count, plural, one {# бочка} few {# бочки} many {# бочек} other {# бочки}}"
+}

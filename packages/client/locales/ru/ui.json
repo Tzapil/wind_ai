@@ -1,4 +1,5 @@
 {
   "ui.placeholder": "Попутного ветра",
-  "ui.title": "Попутного ветра"
+  "ui.title": "Попутного ветра",
+  "ui.silver": "{count, plural, one {серебро} few {серебра} many {серебра} other {серебра}}"
 }
