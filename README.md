@@ -12,7 +12,9 @@ pnpm install
 pnpm dev
 ```
 
-Откройте адрес, который напечатает Vite. Для проверки сборки: `pnpm build` и `pnpm preview`.
+Откройте адрес, который напечатает Vite. Для проверки сборки выполните `pnpm build`, затем `pnpm preview` и откройте `http://localhost:4173`.
+
+На каждом PR GitHub Actions запускает `lint`, `typecheck`, `test` и `build`. Архив `client-dist` доступен на странице прогона CI в разделе Artifacts. Чтобы проверить скачанную сборку, распакуйте содержимое архива в `packages/client/dist`, выполните `pnpm install --frozen-lockfile` и `pnpm preview`, затем откройте `http://localhost:4173`.
 
 Проверки: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm e2e`.
 На системах без Microsoft Edge перед `pnpm e2e` установите браузер тестов командой `pnpm exec playwright install chromium`.
