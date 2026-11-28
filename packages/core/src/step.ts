@@ -8,6 +8,7 @@ import type {
 } from './types.js';
 import { TICKS_PER_DAY, gameTimeOf } from './time.js';
 import { advanceWind, changeDailyWind } from './wind.js';
+import { findRoute } from './nav/pathfinding.js';
 
 const id = z.string().min(1);
 const qty = z.number().int().positive();
@@ -67,6 +68,32 @@ function applyCommand(
   }
   const ship = state.player.ship;
   switch (command.type) {
+    case 'SetCourseToPoint':
+    case 'SetCourseToPort': {
+      const port =
+        command.type === 'SetCourseToPort'
+          ? data.ports.find((item) => item.id === command.portId)
+          : undefined;
+      if (command.type === 'SetCourseToPort' && !port)
+        return rejection(command, 'unknown_port');
+      if (state.player.location.kind === 'port')
+        return rejection(command, 'in_port');
+      const destination =
+        port?.anchorage ??
+        (command.type === 'SetCourseToPoint'
+          ? { x: command.x, y: command.y }
+          : null);
+      if (!destination) return rejection(command, 'unreachable');
+      const route = findRoute(data.nav, { x: ship.x, y: ship.y }, destination);
+      if (!route) return { type: 'CourseUnreachable' };
+      ship.route = route.waypoints;
+      ship.routePortId = port?.id ?? null;
+      return {
+        type: 'CourseSet',
+        waypoints: route.waypoints.length,
+        distanceKm: route.distanceKm,
+      };
+    }
     case 'ClearCourse':
       ship.route = [];
       ship.routePortId = null;
@@ -80,7 +107,6 @@ function applyCommand(
     case 'ToggleAnchor':
       ship.anchored = !ship.anchored;
       return;
-    case 'SetCourseToPort':
     case 'DevTeleport':
       if (!data.ports.some((port) => port.id === command.portId))
         return rejection(command, 'unknown_port');
