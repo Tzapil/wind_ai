@@ -10,6 +10,7 @@ export default [
       '**/coverage/**',
       '**/playwright-report/**',
       '**/test-results/**',
+      '**/.agent-logs/**',
     ],
   },
   eslint.configs.recommended,

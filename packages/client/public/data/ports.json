@@ -3,6 +3,11 @@
     "id": "athens",
     "lat": 37.94,
     "lon": 23.62,
+    "anchorage": {
+      "x": 2626.16,
+      "y": -4565.83
+    },
+    "exitHeading": 180,
     "nation": "neutral",
     "provisionPrice": 3,
     "crewHirePrice": 12,
@@ -63,6 +68,11 @@
     "id": "istanbul",
     "lat": 41,
     "lon": 28.98,
+    "anchorage": {
+      "x": 3222.16,
+      "y": -5006.83
+    },
+    "exitHeading": 180,
     "nation": "ottoman",
     "provisionPrice": 3,
     "crewHirePrice": 15,
@@ -123,6 +133,11 @@
     "id": "alexandria",
     "lat": 31.21,
     "lon": 29.88,
+    "anchorage": {
+      "x": 3322.16,
+      "y": -3656.83
+    },
+    "exitHeading": 345.96375653207355,
     "nation": "ottoman",
     "provisionPrice": 2,
     "crewHirePrice": 10,
@@ -183,6 +198,11 @@
     "id": "beirut",
     "lat": 33.9,
     "lon": 35.51,
+    "anchorage": {
+      "x": 3949.16,
+      "y": -4011.83
+    },
+    "exitHeading": 0,
     "nation": "ottoman",
     "provisionPrice": 3,
     "crewHirePrice": 12,
@@ -243,6 +263,11 @@
     "id": "venice",
     "lat": 45.42,
     "lon": 12.43,
+    "anchorage": {
+      "x": 1382.16,
+      "y": -5681.83
+    },
+    "exitHeading": 90,
     "nation": "italian",
     "provisionPrice": 4,
     "crewHirePrice": 18,
