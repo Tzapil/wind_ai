@@ -17,6 +17,7 @@ export interface NavGrid {
   originX: number;
   originY: number;
   bits: Uint8Array;
+  pathGrid?: NavGrid;
 }
 
 export interface GameData {
