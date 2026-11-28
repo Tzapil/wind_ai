@@ -157,7 +157,7 @@ describe('simulation scaffold', () => {
       {
         type: 'CommandRejected',
         command: 'SetCourseToPort',
-        reason: 'not_implemented',
+        reason: 'in_port',
       },
       { type: 'CommandRejected', command: 'BuyGoods', reason: 'unknown_good' },
     ]);

@@ -11,6 +11,7 @@ export default defineConfig({
             'tools/mapgen/**/*.test.mjs',
           ],
           environment: 'node',
+          benchmark: { include: ['packages/core/test/**/*.bench.ts'] },
         },
       },
       {
@@ -18,6 +19,7 @@ export default defineConfig({
           name: 'client',
           include: ['packages/client/test/**/*.test.ts'],
           environment: 'happy-dom',
+          benchmark: { include: [] },
         },
       },
     ],
