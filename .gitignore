@@ -6,4 +6,5 @@ playwright-report/
 test-results/
 .env*
 .agent-logs/
+tools/mapgen/.cache/
 *.tsbuildinfo
