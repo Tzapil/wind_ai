@@ -1,5 +1,9 @@
 packages:
   - packages/*
+allowBuilds:
+  better-sqlite3: false
+  msgpackr-extract: false
 minimumReleaseAgeExclude:
   - '@eslint/config-array@0.23.7'
   - eslint@10.16.0
+  - mapshaper@0.8.13

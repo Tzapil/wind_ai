@@ -16,7 +16,9 @@
 | i18next | Локализация интерфейса | MIT |
 | i18next-icu | ICU-формы сообщений | MIT |
 | eslint-plugin-i18next | Проверка текстовых литералов интерфейса | ISC |
+| mapshaper | Обрезка и упрощение береговой линии при сборке карты | MPL-2.0 |
 | PT Serif, PT Sans (`@fontsource`) | Локальные шрифты для русского текста | SIL OFL 1.1 |
+| Natural Earth `ne_10m_land`, `ne_10m_minor_islands` | Исходная береговая линия, сведения в `data/map/SOURCES.md` | Общественное достояние |
 
 Лицензии шрифтов копируются в `packages/client/public/assets/PT-Serif-OFL.txt` и `PT-Sans-OFL.txt`; они попадают в сборку рядом с файлами шрифтов.
 
