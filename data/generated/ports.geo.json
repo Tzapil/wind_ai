@@ -1,0 +1,37 @@
+{
+  "athens": {
+    "anchorage": {
+      "x": 2626.16,
+      "y": -4565.83
+    },
+    "exitHeading": 180
+  },
+  "istanbul": {
+    "anchorage": {
+      "x": 3222.16,
+      "y": -5006.83
+    },
+    "exitHeading": 180
+  },
+  "alexandria": {
+    "anchorage": {
+      "x": 3322.16,
+      "y": -3656.83
+    },
+    "exitHeading": 345.96375653207355
+  },
+  "beirut": {
+    "anchorage": {
+      "x": 3949.16,
+      "y": -4011.83
+    },
+    "exitHeading": 0
+  },
+  "venice": {
+    "anchorage": {
+      "x": 1382.16,
+      "y": -5681.83
+    },
+    "exitHeading": 90
+  }
+}

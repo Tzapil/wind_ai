@@ -8,8 +8,12 @@ import { fileURLToPath } from 'node:url';
 import mapshaper from 'mapshaper';
 
 import { project, scaleAt } from '../../packages/core/src/util/geo.ts';
+import { anchorPort, buildGrid, debugPng, encodeGrid } from './navgrid.mjs';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const root = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  '../..',
+);
 const cacheDir = path.join(root, 'tools/mapgen/.cache');
 const outputPath = path.join(root, 'packages/client/public/data/coast.json');
 const sources = [
@@ -40,13 +44,16 @@ async function sourceArchive(source) {
   }
   if (!archive) {
     const response = await globalThis.fetch(source.url);
-    if (!response.ok) throw new Error(`Cannot download ${source.url}: HTTP ${response.status}`);
+    if (!response.ok)
+      throw new Error(`Cannot download ${source.url}: HTTP ${response.status}`);
     archive = Buffer.from(await response.arrayBuffer());
-    if (archive.subarray(0, 2).toString() !== 'PK') throw new Error(`Invalid ZIP: ${source.url}`);
+    if (archive.subarray(0, 2).toString() !== 'PK')
+      throw new Error(`Invalid ZIP: ${source.url}`);
     downloaded = true;
   }
   const sha256 = createHash('sha256').update(archive).digest('hex');
-  if (sha256 !== source.sha256) throw new Error(`Unexpected source revision: ${source.name} (${sha256})`);
+  if (sha256 !== source.sha256)
+    throw new Error(`Unexpected source revision: ${source.name} (${sha256})`);
   if (downloaded) await writeFile(cachePath, archive);
   return archive;
 }
@@ -63,17 +70,22 @@ function roundCoordinate(value) {
 }
 
 function projectGeometry(geometry) {
-  const coordinates = polygonsOf(geometry).map((polygon) => polygon.map((ring) => ring.map(([lon, lat]) => {
-    const point = project(lon, lat);
-    return [roundCoordinate(point.x), roundCoordinate(point.y)];
-  })));
+  const coordinates = polygonsOf(geometry).map((polygon) =>
+    polygon.map((ring) =>
+      ring.map(([lon, lat]) => {
+        const point = project(lon, lat);
+        return [roundCoordinate(point.x), roundCoordinate(point.y)];
+      }),
+    ),
+  );
   return { type: 'MultiPolygon', coordinates };
 }
 
 function ringArea(ring) {
   let twiceArea = 0;
   for (let index = 0; index < ring.length - 1; index += 1) {
-    twiceArea += ring[index][0] * ring[index + 1][1] - ring[index + 1][0] * ring[index][1];
+    twiceArea +=
+      ring[index][0] * ring[index + 1][1] - ring[index + 1][0] * ring[index][1];
   }
   const meanY = ring.reduce((sum, point) => sum + point[1], 0) / ring.length;
   return (Math.abs(twiceArea) / 2) * scaleAt(meanY) ** 2;
@@ -81,13 +93,18 @@ function ringArea(ring) {
 
 function toFlatRings(geojson, minIslandArea) {
   const rings = [];
-  const geometries = geojson.features?.map((feature) => feature.geometry) ?? geojson.geometries ?? [];
+  const geometries =
+    geojson.features?.map((feature) => feature.geometry) ??
+    geojson.geometries ??
+    [];
   for (const geometry of geometries) {
     for (const polygon of polygonsOf(geometry)) {
       if (ringArea(polygon[0]) < minIslandArea) continue;
       for (const ring of polygon) {
         if (ring.length < 4) continue;
-        rings.push(ring.flatMap(([x, y]) => [roundCoordinate(x), roundCoordinate(y)]));
+        rings.push(
+          ring.flatMap(([x, y]) => [roundCoordinate(x), roundCoordinate(y)]),
+        );
       }
     }
   }
@@ -106,39 +123,104 @@ async function run() {
     );
     for (const file of Object.values(output)) {
       const clipped = JSON.parse(file.toString());
-      const geometries = clipped.features?.map((feature) => feature.geometry) ?? clipped.geometries ?? [];
+      const geometries =
+        clipped.features?.map((feature) => feature.geometry) ??
+        clipped.geometries ??
+        [];
       for (const geometry of geometries) {
-        features.push({ type: 'Feature', properties: { source: source.name }, geometry: projectGeometry(geometry) });
+        features.push({
+          type: 'Feature',
+          properties: { source: source.name },
+          geometry: projectGeometry(geometry),
+        });
       }
     }
-    process.stdout.write(`${source.name}: ${features.length - beforeCount} clipped features\n`);
+    process.stdout.write(
+      `${source.name}: ${features.length - beforeCount} clipped features\n`,
+    );
   }
 
   const projected = { type: 'FeatureCollection', features };
-  const result = { bbox: [
-    roundCoordinate(project(mapBbox[0], mapBbox[3]).x),
-    roundCoordinate(project(mapBbox[0], mapBbox[3]).y),
-    roundCoordinate(project(mapBbox[2], mapBbox[1]).x),
-    roundCoordinate(project(mapBbox[2], mapBbox[1]).y),
-  ], lods: [] };
+  const result = {
+    bbox: [
+      roundCoordinate(project(mapBbox[0], mapBbox[3]).x),
+      roundCoordinate(project(mapBbox[0], mapBbox[3]).y),
+      roundCoordinate(project(mapBbox[2], mapBbox[1]).x),
+      roundCoordinate(project(mapBbox[2], mapBbox[1]).y),
+    ],
+    lods: [],
+  };
 
   for (const tolerance of lods) {
     const output = await mapshaper.applyCommands(
       `-i projected.geojson -simplify planar interval=${tolerance} keep-shapes -o format=geojson simplified.geojson`,
       { 'projected.geojson': JSON.stringify(projected) },
     );
-    const polygons = Object.values(output).flatMap((file) => toFlatRings(JSON.parse(file.toString()), tolerance === 3 ? 1 : 0));
+    const polygons = Object.values(output).flatMap((file) =>
+      toFlatRings(JSON.parse(file.toString()), tolerance === 3 ? 1 : 0),
+    );
     const lod = { tolerance, polygons };
     const size = Buffer.byteLength(JSON.stringify(lod));
     const limit = tolerance === 3 ? 300_000 : 3_000_000;
-    if (size > limit) throw new Error(`LOD ${tolerance} is ${size} bytes, limit is ${limit}`);
-    process.stdout.write(`LOD ${tolerance}: ${polygons.length} rings, ${size} bytes\n`);
+    if (size > limit)
+      throw new Error(`LOD ${tolerance} is ${size} bytes, limit is ${limit}`);
+    process.stdout.write(
+      `LOD ${tolerance}: ${polygons.length} rings, ${size} bytes\n`,
+    );
     result.lods.push(lod);
   }
 
   await mkdir(path.dirname(outputPath), { recursive: true });
   await writeFile(outputPath, `${JSON.stringify(result)}\n`);
   process.stdout.write(`Wrote ${path.relative(root, outputPath)}\n`);
+
+  const [straits, barriers, ports, wind] = await Promise.all([
+    readFile(path.join(root, 'data/map/straits.json'), 'utf8').then(JSON.parse),
+    readFile(path.join(root, 'data/map/barriers.json'), 'utf8').then(
+      JSON.parse,
+    ),
+    readFile(path.join(root, 'data/ports.json'), 'utf8').then(JSON.parse),
+    readFile(path.join(root, 'data/wind.json'), 'utf8').then(JSON.parse),
+  ]);
+  const { grid, overlay, connected } = buildGrid(
+    projected,
+    result.bbox,
+    straits,
+    barriers,
+  );
+  const portGeo = Object.fromEntries(
+    ports.map((port) => [port.id, anchorPort(grid, port.lon, port.lat)]),
+  );
+  const windGeo = Object.fromEntries(
+    wind.regions.map((region) => [region.id, project(region.lon, region.lat)]),
+  );
+  const generatedDir = path.join(root, 'data/generated');
+  await mkdir(generatedDir, { recursive: true });
+  await Promise.all([
+    writeFile(
+      path.join(root, 'packages/client/public/data/navgrid.bin'),
+      encodeGrid(grid),
+    ),
+    writeFile(
+      path.join(root, 'packages/client/public/data/navgrid-debug.png'),
+      debugPng(grid, overlay, Object.values(portGeo)),
+    ),
+    writeFile(
+      path.join(root, 'packages/client/public/data/straits.json'),
+      `${JSON.stringify(straits)}\n`,
+    ),
+    writeFile(
+      path.join(generatedDir, 'ports.geo.json'),
+      `${JSON.stringify(portGeo, null, 2)}\n`,
+    ),
+    writeFile(
+      path.join(generatedDir, 'wind.geo.json'),
+      `${JSON.stringify(windGeo, null, 2)}\n`,
+    ),
+  ]);
+  process.stdout.write(
+    `Navigation grid: ${grid.width}x${grid.height}, ${connected} connected water cells\n`,
+  );
 }
 
 run().catch((error) => {
