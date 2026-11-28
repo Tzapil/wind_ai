@@ -1,5 +1,6 @@
 import type { GameData, WorldState } from './types.js';
 import { int, seedStream, uniform } from './util/rng.js';
+import { START_TICK } from './time.js';
 
 /** Creates the initial, serializable world from static data and a seed. */
 export function createWorld(
@@ -53,7 +54,7 @@ export function createWorld(
   return {
     schemaVersion: 1,
     seed: opts.seed,
-    tick: 0,
+    tick: START_TICK,
     rng,
     wind: { regions },
     ports,

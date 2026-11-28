@@ -48,13 +48,26 @@ const data: GameData = {
 };
 
 describe('simulation scaffold', () => {
+  it('emits DayStarted only at midnight', () => {
+    const world = createWorld(data, { seed: 42, playerName: 'Captain' });
+    for (let tick = world.tick + 1; tick < 600; tick += 1) {
+      expect(step(world, [], data)).toEqual([]);
+    }
+    expect(world.tick).toBe(599);
+    expect(step(world, [], data)).toEqual([{ type: 'DayStarted', day: 1 }]);
+    for (let tick = world.tick + 1; tick < 1200; tick += 1) {
+      expect(step(world, [], data)).toEqual([]);
+    }
+    expect(step(world, [], data)).toEqual([{ type: 'DayStarted', day: 2 }]);
+  });
+
   it('creates a complete initial world from authored start values', () => {
     const world = createWorld(data, { seed: 42, playerName: 'Captain' });
     const athens = data.ports.find(
       (port) => port.id === data.balance.startPortId,
     )!;
     expect(world.schemaVersion).toBe(1);
-    expect(world.tick).toBe(0);
+    expect(world.tick).toBe(200);
     expect(world.player).toMatchObject({
       name: 'Captain',
       silver: 1000,
@@ -108,11 +121,11 @@ describe('simulation scaffold', () => {
         reason: 'dev_disabled',
       },
     ]);
-    expect(world.tick).toBe(1);
+    expect(world.tick).toBe(201);
     expect(world.player.silver).toBe(initialSilver);
     expect(world.player.ship.sails).toBe(1);
     expect(step(world, [], data)).toEqual([]);
-    expect(world.tick).toBe(2);
+    expect(world.tick).toBe(202);
   });
 
   it('rejects valid commands whose systems have not been added', () => {
