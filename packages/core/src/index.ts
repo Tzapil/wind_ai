@@ -9,3 +9,4 @@ export * from './util/rng.js';
 export { hashState } from './util/hash.js';
 export { createWorld } from './world.js';
 export { step } from './step.js';
+export { windAt, pointOfSailMultiplier } from './wind.js';

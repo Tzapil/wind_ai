@@ -7,6 +7,7 @@ import type {
   WorldState,
 } from './types.js';
 import { TICKS_PER_DAY, gameTimeOf } from './time.js';
+import { advanceWind, changeDailyWind } from './wind.js';
 
 const id = z.string().min(1);
 const qty = z.number().int().positive();
@@ -111,12 +112,15 @@ export function step(
     const event = applyCommand(state, command, data);
     if (event) events.push(event);
   }
-  // 2. Time and daily systems (wind, provisions, and market follow later).
+  // 2. Time and daily systems (provisions and market follow later).
   state.tick += 1;
   if (state.tick % TICKS_PER_DAY === 0) {
-    events.push({ type: 'DayStarted', day: gameTimeOf(state.tick).day });
+    const day = gameTimeOf(state.tick).day;
+    events.push({ type: 'DayStarted', day });
+    changeDailyWind(state, data, day);
   }
-  // 3. Wind transitions (T-22).
+  // 3. Wind transitions.
+  events.push(...advanceWind(state));
   // 4. Navigation (T-23 through T-25).
   // 5. Provision consumption (T-26).
   // 6. Statistics and log (T-30).

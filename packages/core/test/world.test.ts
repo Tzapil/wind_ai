@@ -54,11 +54,19 @@ describe('simulation scaffold', () => {
       expect(step(world, [], data)).toEqual([]);
     }
     expect(world.tick).toBe(599);
-    expect(step(world, [], data)).toEqual([{ type: 'DayStarted', day: 1 }]);
+    expect(step(world, [], data)).toContainEqual({
+      type: 'DayStarted',
+      day: 1,
+    });
     for (let tick = world.tick + 1; tick < 1200; tick += 1) {
-      expect(step(world, [], data)).toEqual([]);
+      expect(
+        step(world, [], data).some((event) => event.type === 'DayStarted'),
+      ).toBe(false);
     }
-    expect(step(world, [], data)).toEqual([{ type: 'DayStarted', day: 2 }]);
+    expect(step(world, [], data)).toContainEqual({
+      type: 'DayStarted',
+      day: 2,
+    });
   });
 
   it('creates a complete initial world from authored start values', () => {
