@@ -4,6 +4,7 @@ import {
   formatQuantity,
   formatSilver,
 } from '../src/i18n/format';
+import { gameTimeOf } from '../../core/src/time';
 
 describe('Russian formatting', () => {
   it.each([
@@ -18,16 +19,10 @@ describe('Russian formatting', () => {
     expect(formatQuantity(count, 'goods.wine.unit')).toBe(expected);
   });
 
-  it('formats a gameTimeOf-shaped value', () => {
-    expect(
-      formatGameDate({
-        dayOfMonth: 3,
-        month: 5,
-        year: 1550,
-        hour: 14,
-        minute: 0,
-      }),
-    ).toBe('3 мая 1550, 14:00');
+  it('formats gameTimeOf output', () => {
+    expect(formatGameDate(gameTimeOf(2 * 600 + 14 * 25))).toBe(
+      '3 мая 1550, 14:00',
+    );
   });
 
   it('formats silver with Russian grouping', () => {
